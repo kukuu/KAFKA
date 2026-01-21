@@ -63,16 +63,12 @@ Kafka Integration Setup &amp; Implementation Guide.
 
 - Alert Ingestion
   - Source generates alert (911 call, sensor, etc.)
+  - Alert sent to /api/alerts endpoint
+  - Controller publishes to alerts.raw topic
 
-Alert sent to /api/alerts endpoint
-
-Controller publishes to alerts.raw topic
-
-Kafka Processing
-
-Correlation Engine consumes from alerts.raw
-
-Processes alert through RuleEngine
+- Kafka Processing
+  - Correlation Engine consumes from alerts.raw
+  - Processes alert through RuleEngine
 
 Publishes processed alert to alerts.processed
 
