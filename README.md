@@ -69,25 +69,16 @@ Kafka Integration Setup &amp; Implementation Guide.
 - Kafka Processing
   - Correlation Engine consumes from alerts.raw
   - Processes alert through RuleEngine
+  - Publishes processed alert to alerts.processed
+  - If correlation detected, creates incident in incidents.correlated
 
-Publishes processed alert to alerts.processed
+- Frontend Consumption
+  - Frontend Kafka consumer subscribes to alerts.processed
+  - Real-time updates via React hooks
+  - State updates in AlertContext
+  - UI re-renders with new alerts
 
-If correlation detected, creates incident in incidents.correlated
-
-Frontend Consumption
-
-Frontend Kafka consumer subscribes to alerts.processed
-
-Real-time updates via React hooks
-
-State updates in AlertContext
-
-UI re-renders with new alerts
-
-Fallback Mechanism
-
-If Kafka fails, fallback to REST API
-
-WebSocket backup for real-time updates
-
-Local storage for offline capability
+- Fallback Mechanism
+  - If Kafka fails, fallback to REST API
+  - WebSocket backup for real-time updates
+  - Local storage for offline capability
