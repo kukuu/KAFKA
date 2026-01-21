@@ -48,6 +48,17 @@ public class KafkaConfig {
     }
 }
 ```
+
+_What this does:
+
+Creates a factory that produces Kafka message senders
+
+Key-Type: String (message key)
+
+Value-Type: Alert (message payload - your custom object)
+
+_
+
 **Topic Configuration**
 
 ```
