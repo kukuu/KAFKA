@@ -1,7 +1,7 @@
 # KAFKA
 Kafka Integration Setup &amp; Implementation Guide for Law Enforcement - LE.
 
-##  Complete Data Flow Architecture
+##  Data Flow Architecture
 
 ```
 ┌─────────────────────┐     ┌─────────────────────┐     ┌─────────────────────┐
