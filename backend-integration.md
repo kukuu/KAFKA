@@ -8,9 +8,8 @@
 
 ```
 // KafkaConfig.java
-@Configuration //Marks this as a Spring configuration class
-@EnableKafka //Enables Spring's Kafka support framework
-//Purpose: Both above creates a centralized configuration for Kafka messaging in the application.
+@Configuration 
+@EnableKafka 
 
 public class KafkaConfig {
 
@@ -49,15 +48,27 @@ public class KafkaConfig {
 }
 ```
 
-_What this does:
+- What this does:
+1. @Configuration //Marks this as a Spring configuration class
+2. @EnableKafka //Enables Spring's Kafka support framework
+//Purpose: Both above creates a centralized configuration for Kafka messaging in the application.
 
-Creates a factory that produces Kafka message senders
+- Producer Factory
+1. Creates a factory that produces Kafka message senders
+2. Key-Type: String (message key)
+3. Value-Type: Alert (message payload - your custom object)
 
-Key-Type: String (message key)
+- Configuration Settings:
 
-Value-Type: Alert (message payload - your custom object)
+Setting	| Value	| Purpose
 
-_
+BOOTSTRAP_SERVERS_CONFIG | 	localhost:9092 | 	Kafka broker location
+
+KEY_SERIALIZER_CLASS_CONFIG | 	StringSerializer.class | 	Converts String keys to bytes
+
+VALUE_SERIALIZER_CLASS_CONFIG | 	JsonSerializer.class |	Converts Alert objects to JSON
+
+_Important: JsonSerializer automatically serializes Java objects to JSON format._
 
 **Topic Configuration**
 
