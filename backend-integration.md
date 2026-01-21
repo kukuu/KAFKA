@@ -70,7 +70,7 @@ VALUE_SERIALIZER_CLASS_CONFIG | 	JsonSerializer.class |	Converts Alert objects t
 
 _Important: JsonSerializer automatically serializes Java objects to JSON format._
 
-## Topic Configuration**
+## Topic Configuration
 
 ```
 // KafkaTopicConfig.java
