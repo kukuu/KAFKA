@@ -88,3 +88,6 @@ Kafka Integration Setup &amp; Implementation Guide for Law Enforcement - LE.
 
 ## Directory Structure
 - https://github.com/kukuu/KAFKA/blob/main/directory-structure.md
+
+## Configuration Setup
+- https://github.com/kukuu/KAFKA/blob/main/configuration-setup.md
