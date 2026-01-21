@@ -86,6 +86,9 @@ Kafka Integration Setup &amp; Implementation Guide for Law Enforcement - LE.
 ## Prerequisites and Dependencies
 - https://github.com/kukuu/KAFKA/blob/main/setup-and-dependencies.md
 
+## Backend Integration
+- https://github.com/kukuu/KAFKA/blob/main/backend-integration.md
+
 ## Directory Structure
 - https://github.com/kukuu/KAFKA/blob/main/directory-structure.md
 
