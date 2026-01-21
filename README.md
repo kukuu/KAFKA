@@ -82,3 +82,6 @@ Kafka Integration Setup &amp; Implementation Guide for Law Enforcement - LE.
   - If Kafka fails, fallback to REST API
   - WebSocket backup for real-time updates
   - Local storage for offline capability
+
+## Prerequisites and Dependencies
+- https://github.com/kukuu/KAFKA/blob/main/setup-and-dependencies.md
