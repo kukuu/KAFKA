@@ -1,11 +1,17 @@
 # Backend Integration
 
 **Spring Kafka Configuration**
+@Configuration: 
+
+@EnableKafka: 
+
 
 ```
 // KafkaConfig.java
-@Configuration
-@EnableKafka
+@Configuration //Marks this as a Spring configuration class
+@EnableKafka //Enables Spring's Kafka support framework
+//Purpose: Both above creates a centralized configuration for Kafka messaging in the application.
+
 public class KafkaConfig {
 
     @Bean
@@ -39,6 +45,31 @@ public class KafkaConfig {
             new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(alertConsumerFactory());
         return factory;
+    }
+}
+```
+**Topic Configuration**
+
+```
+// KafkaTopicConfig.java
+@Configuration
+public class KafkaTopicConfig {
+
+    @Bean
+    public NewTopic rawAlertsTopic() {
+        return TopicBuilder.name("alerts.raw")
+                .partitions(3)
+                .replicas(1)
+                .config(TopicConfig.RETENTION_MS_CONFIG, "604800000") // 7 days
+                .build();
+    }
+
+    @Bean
+    public NewTopic processedAlertsTopic() {
+        return TopicBuilder.name("alerts.processed")
+                .partitions(3)
+                .replicas(1)
+                .build();
     }
 }
 ```
