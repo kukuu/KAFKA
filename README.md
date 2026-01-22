@@ -99,3 +99,5 @@ The following below  are Kafka Integration Setup &amp; Implementation Guide for 
 ## Backend Integration
 - https://github.com/kukuu/KAFKA/blob/main/backend-integration.md
 
+## Frontend Kafka Integration
+https://github.com/kukuu/KAFKA/blob/main/frontend-kafka-integration.md
