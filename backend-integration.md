@@ -96,3 +96,121 @@ public class KafkaTopicConfig {
 }
 ```
 ## Alert Producer Service
+```
+// AlertProducer.java
+@Service
+@Slf4j
+public class AlertProducer {
+
+    private static final String RAW_ALERTS_TOPIC = "alerts.raw";
+    private static final String PROCESSED_ALERTS_TOPIC = "alerts.processed";
+
+    @Autowired
+    private KafkaTemplate<String, Alert> kafkaTemplate;
+
+    public void sendRawAlert(Alert alert) {
+        log.info("Producing raw alert: {}", alert.getId());
+        
+        kafkaTemplate.send(RAW_ALERTS_TOPIC, alert.getId(), alert)
+            .addCallback(
+                result -> log.info("Alert sent successfully: {}", alert.getId()),
+                ex -> log.error("Failed to send alert: {}", ex.getMessage())
+            );
+    }
+
+    public void sendProcessedAlert(Alert alert) {
+        log.info("Producing processed alert: {}", alert.getId());
+        kafkaTemplate.send(PROCESSED_ALERTS_TOPIC, alert.getId(), alert);
+    }
+}
+```
+## Alert Consumer Service
+```
+// AlertConsumer.java
+@Service
+@Slf4j
+public class AlertConsumer {
+
+    @Autowired
+    private CorrelationService correlationService;
+
+    @Autowired
+    private AlertProducer alertProducer;
+
+    @KafkaListener(topics = "alerts.raw", groupId = "correlation-engine")
+    public void consumeRawAlert(ConsumerRecord<String, Alert> record) {
+        log.info("Consuming raw alert: {}", record.key());
+        
+        Alert alert = record.value();
+        
+        try {
+            // Process and correlate alert
+            Alert processedAlert = correlationService.processAlert(alert);
+            
+            // Send to processed topic
+            alertProducer.sendProcessedAlert(processedAlert);
+            
+            // Send WebSocket notification
+            webSocketService.broadcastAlert(processedAlert);
+            
+        } catch (Exception e) {
+            log.error("Error processing alert {}: {}", alert.getId(), e.getMessage());
+            // Send to DLQ (Dead Letter Queue)
+            sendToDlq(record);
+        }
+    }
+
+    @KafkaListener(topics = "alerts.processed", groupId = "dashboard-service")
+    public void consumeProcessedAlert(Alert alert) {
+        log.info("Dashboard received processed alert: {}", alert.getId());
+        // Update dashboard metrics
+        metricsService.updateAlertMetrics(alert);
+    }
+}
+```
+## Integration with Correlation Service
+
+```
+// CorrelationService.java with Kafka integration
+@Service
+public class CorrelationService {
+
+    @Autowired
+    private AlertProducer alertProducer;
+
+    @Autowired
+    private RuleEngine ruleEngine;
+
+    public Alert correlateAlerts(List<Alert> alerts) {
+        log.info("Starting correlation of {} alerts", alerts.size());
+        
+        // Process each alert through Kafka
+        alerts.forEach(alert -> {
+            // Send to Kafka for processing
+            alertProducer.sendRawAlert(alert);
+            
+            // Apply correlation rules
+            CorrelationResult result = ruleEngine.applyRules(alert);
+            
+            if (result.isCorrelated()) {
+                createIncident(result);
+            }
+        });
+        
+        // Stream processing for real-time correlation
+        return processAlertStream(alerts);
+    }
+
+    private void createIncident(CorrelationResult result) {
+        Incident incident = new Incident();
+        incident.setCorrelatedAlerts(result.getAlerts());
+        incident.setConfidenceScore(result.getConfidence());
+        
+        // Send to incidents topic
+        kafkaTemplate.send("incidents.correlated", incident.getId(), incident);
+        
+        log.info("Created incident {} with confidence: {}", 
+                 incident.getId(), result.getConfidence());
+    }
+}
+```
