@@ -56,8 +56,9 @@ Kafka Integration Setup &amp; Implementation Guide for Law Enforcement - LE.
 │   UI Re-render &    │     │   Real-time         │
 │   Component Update  │     │   Notifications     │
 │                     │     │   (Push, Email,     │
-└─────────────────────┘     │      SMS)           │
-                             └─────────────────────┘
+└─────────────────────┘     │      SMS)           |
+                            │                     | 
+                             ──────────────────---┘
 ```
 ## Step-by-Step Sequence
 
