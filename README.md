@@ -119,3 +119,4 @@ https://github.com/kukuu/KAFKA/blob/main/deployment-and-scaling.md
 
 ## Conclusion
 
+https://github.com/kukuu/KAFKA/blob/main/conclusion.md
