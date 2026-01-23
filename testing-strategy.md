@@ -136,3 +136,33 @@ class KafkaIntegrationTestWithContainers {
 ```
 
 ## E2E Testing with Cypress
+```
+// cypress/e2e/kafka-integration.cy.ts
+describe('Kafka Integration E2E', () => {
+  beforeEach(() => {
+    // Mock Kafka server
+    cy.intercept('POST', '**/kafka/proxy/**', {
+      statusCode: 200,
+      body: { success: true }
+    }).as('kafkaProduce');
+
+    cy.login();
+    cy.visit('/dashboard');
+  });
+
+  it('should send alert through Kafka and display in real-time', () => {
+    // Create new alert
+    cy.get('[data-testid="create-alert-btn"]').click();
+    cy.get('[data-testid="alert-priority"]').select('HIGH');
+    cy.get('[data-testid="alert-submit"]').click();
+
+    // Verify Kafka request was made
+    cy.wait('@kafkaProduce').its('request.body').should('include', 'HIGH');
+
+    // Verify alert appears in real-time
+    cy.get('[data-testid="alert-list"]')
+      .should('contain', 'HIGH PRIORITY')
+      .and('contain', 'Just now');
+  });
+});
+```
