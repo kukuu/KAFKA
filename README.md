@@ -15,7 +15,7 @@ The following below  are Kafka Integration Setup &amp; Implementation Guide for 
 └─────────────────────┘     └─────────────────────┘     │    └─────────────┘  │
          │                           │                  │           │         │
          │                           │                  │           ▼         │
-         │                           │                  │    ┌─────────────┐  │
+         │                           │                  │    ┌─────────────┐  │ 
          │                           │                  │    │Correlation  │  │
          │                           │                  │    │  Engine     │  │
          │                           │                  │    │ (Quarkus/   │  │
