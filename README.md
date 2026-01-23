@@ -120,3 +120,6 @@ https://github.com/kukuu/KAFKA/blob/main/deployment-and-scaling.md
 ## Conclusion
 
 https://github.com/kukuu/KAFKA/blob/main/conclusion.md
+
+## Medium Term Enhancements
+https://github.com/kukuu/KAFKA/blob/main/medium-term-enhancements.md
