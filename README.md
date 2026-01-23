@@ -113,3 +113,6 @@ https://github.com/kukuu/KAFKA/blob/main/trouble-shooting.md
 
 ## Debug Commands
 https://github.com/kukuu/KAFKA/blob/main/debug-commands.md
+
+## Deployment and Scaling
+https://github.com/kukuu/KAFKA/blob/main/deployment-and-scaling.md
