@@ -1,6 +1,4 @@
-# Conclusion
-
-## Conclusion & Next Steps
+# Conclusion & Next Steps
 
 - Immediate Actions:
   - Set up local Kafka with Docker Compose
