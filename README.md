@@ -107,3 +107,6 @@ https://github.com/kukuu/KAFKA/blob/main/testing-strategy.md
 
 ## Monitoring Production
 https://github.com/kukuu/KAFKA/blob/main/monitoring-production.md
+
+## Trouble Shooting
+https://github.com/kukuu/KAFKA/blob/main/trouble-shooting.md
