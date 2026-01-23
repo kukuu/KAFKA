@@ -106,3 +106,4 @@ https://github.com/kukuu/KAFKA/blob/main/frontend-kafka-integration.md
 https://github.com/kukuu/KAFKA/blob/main/testing-strategy.md
 
 # Monitoring Production
+https://github.com/kukuu/KAFKA/blob/main/monitoring-production.md
