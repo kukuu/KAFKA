@@ -101,3 +101,6 @@ The following below  are Kafka Integration Setup &amp; Implementation Guide for 
 
 ## Frontend Kafka Integration
 https://github.com/kukuu/KAFKA/blob/main/frontend-kafka-integration.md
+
+## Testing Strategy
+https://github.com/kukuu/KAFKA/blob/main/testing-strategy.md
