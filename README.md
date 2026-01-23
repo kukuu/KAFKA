@@ -110,3 +110,6 @@ https://github.com/kukuu/KAFKA/blob/main/monitoring-production.md
 
 ## Trouble Shooting
 https://github.com/kukuu/KAFKA/blob/main/trouble-shooting.md
+
+## Debug Commands
+https://github.com/kukuu/KAFKA/blob/main/debug-commands.md
