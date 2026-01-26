@@ -3,7 +3,7 @@ This Kafka integration provides a robust, scalable foundation for real-time aler
 
 The following below  are Kafka Integration Setup &amp; Implementation Guide for Law Enforcement - LE.  
 
-##  Data Flow Architecture
+##  Data Flow Architecture 
 
 ```
 ┌─────────────────────┐     ┌─────────────────────┐     ┌─────────────────────┐
